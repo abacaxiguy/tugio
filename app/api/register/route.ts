@@ -22,8 +22,8 @@ export async function POST(request: Request) {
         });
 
         return NextResponse.json(user);
-    } catch (error) {
-        console.error(error, "REGISTRATION_ERROR");
-        return new NextResponse("Server Error", { status: 500 });
+    } catch (error: any) {
+        if (error.code === "P2002") return new NextResponse("Email already exists", { status: 400 });
+        else return new NextResponse("Server error, please try again", { status: 500 });
     }
 }
