@@ -7,6 +7,8 @@ import { BsGithub, BsGoogle } from "react-icons/bs";
 import Button from "@/app/components/Button";
 import Input from "@/app/components/inputs/Input";
 import AuthSocialButton from "./AuthSocialButton";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 type Variant = "LOGIN" | "REGISTER";
 
@@ -33,7 +35,10 @@ export default function AuthForm() {
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
         if (variant === "REGISTER") {
-            // Register
+            axios
+                .post("/api/register", data)
+                .catch((error) => toast.error(error.response.data))
+                .finally(() => setIsLoading(false));
         }
         if (variant === "LOGIN") {
             // Login
