@@ -29,6 +29,7 @@ export default function useRoutes() {
                 href: "#",
                 icon: HiArrowLeftOnRectangle,
                 onClick: () => signOut(),
+                color: "text-rose-500 hover:text-rose-700",
             },
         ],
         [pathname, conversationId]
