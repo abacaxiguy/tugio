@@ -52,7 +52,10 @@ export default function ConversationBox({ data, selected }: ConversationBoxProps
     }, [lastMessage]);
 
     return (
-        <div className={`w-full relative flex items-center space-x-3 hover:bg-neutral-100 rounded-lg transition cursor-pointer p-3 ${selected ? "bg-neutral-100" : "bg-white"}`} onClick={handleClick}>
+        <div
+            className={`w-full relative flex items-center space-x-3 hover:bg-neutral-100 rounded-lg transition cursor-pointer mt-1 p-3 ${selected ? "bg-neutral-100" : "bg-white"}`}
+            onClick={handleClick}
+        >
             <Avatar user={otherUser} />
             <div className="min-w-0 flex-1">
                 <div className="focus:outline-none">
