@@ -1,6 +1,5 @@
 "use client";
 
-import clsx from "clsx";
 import Link from "next/link";
 
 interface MobileItemProps {
@@ -20,11 +19,10 @@ export default function MobileItem({ icon: Icon, href, onClick, active, color }:
         <Link
             onClick={handleClick}
             href={href}
-            className={clsx(
-                "group flex gap-x-3 text-sm leading-6 font-semibold w-full justify-center p-4 hover:bg-gray-100",
-                active && "bg-gray-100 text-gray-800",
-                color || "text-gray-500 hover:text-gray-800"
-            )}
+            className={`group flex gap-x-3 text-sm leading-6 font-semibold w-full justify-center p-4 hover:bg-gray-100 
+            ${active && "bg-gray-100 text-gray-800"} 
+            ${color || "text-gray-500 hover:text-gray-800"}
+            `}
         >
             <Icon className="w-6 h-6" />
         </Link>
