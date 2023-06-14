@@ -51,6 +51,14 @@ export default function ConversationBox({ data, selected }: ConversationBoxProps
         return "No messages yet";
     }, [lastMessage]);
 
+    const lastMessageDate = useMemo(() => {
+        if (!lastMessage?.createdAt) return null;
+        const locale = Intl.DateTimeFormat().resolvedOptions().locale;
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const date = new Date(lastMessage.createdAt).toLocaleString(locale, { timeZone: tz });
+        return format(new Date(date), "HH:mm");
+    }, [lastMessage?.createdAt]);
+
     return (
         <div
             className={`w-full relative flex items-center space-x-3 hover:bg-neutral-100 rounded-lg transition cursor-pointer mt-1 p-3 ${selected ? "bg-neutral-100" : "bg-white"}`}
@@ -61,7 +69,7 @@ export default function ConversationBox({ data, selected }: ConversationBoxProps
                 <div className="focus:outline-none">
                     <div className="flex justify-between items-center mb-1">
                         <p className={`text-md text-gray-900 ${!hasSeen && "font-medium"}`}>{data.name || otherUser?.name}</p>
-                        {lastMessage?.createdAt && <p className={`text-xs font-light ${hasSeen ? "text-gray-400" : "text-gray-900"}`}>{format(new Date(lastMessage?.createdAt || 0), "HH:mm")}</p>}
+                        {lastMessage?.createdAt && <p className={`text-xs font-light ${hasSeen ? "text-gray-400" : "text-gray-900"}`}>{lastMessageDate}</p>}
                     </div>
                     <p className={`truncate text-sm ${hasSeen ? "text-gray-400" : "text-gray-900 font-medium"}`}>{lastMessageText}</p>
                 </div>
