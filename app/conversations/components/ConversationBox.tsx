@@ -60,7 +60,7 @@ export default function ConversationBox({ data, selected }: ConversationBoxProps
             <div className="min-w-0 flex-1">
                 <div className="focus:outline-none">
                     <div className="flex justify-between items-center mb-1">
-                        <p className={`text-md font-medium ${hasSeen ? "text-gray-400" : "text-gray-900"}`}>{data.name || otherUser?.name}</p>
+                        <p className={`text-md text-gray-900 ${!hasSeen && "font-medium"}`}>{data.name || otherUser?.name}</p>
                         {lastMessage?.createdAt && <p className={`text-xs font-light ${hasSeen ? "text-gray-400" : "text-gray-900"}`}>{format(new Date(lastMessage?.createdAt || 0), "HH:mm")}</p>}
                     </div>
                     <p className={`truncate text-sm ${hasSeen ? "text-gray-400" : "text-gray-900 font-medium"}`}>{lastMessageText}</p>
