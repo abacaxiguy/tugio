@@ -2,7 +2,6 @@
 
 import { useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { format } from "date-fns";
 import { useSession } from "next-auth/react";
 import { FullConversationType } from "@/app/types";
 import useOtherUser from "@/app/hooks/useOtherUser";
@@ -65,7 +64,7 @@ export default function ConversationBox({ data, selected }: ConversationBoxProps
             <div className="min-w-0 flex-1">
                 <div className="focus:outline-none">
                     <div className="flex justify-between items-center mb-1">
-                        <p className={`text-md text-gray-900 ${!hasSeen && "font-medium"}`}>{data.name || otherUser?.name}</p>
+                        <p className={`text-md text-gray-900 ${!hasSeen ? "font-medium" : ""}`}>{data.name || otherUser?.name}</p>
                         {lastMessage?.createdAt && <p className={`text-xs font-light ${hasSeen ? "text-gray-400" : "text-gray-900"}`}>{lastMessageDate}</p>}
                     </div>
                     <p className={`truncate text-sm ${hasSeen ? "text-gray-400" : "text-gray-900 font-medium"}`}>{lastMessageText}</p>

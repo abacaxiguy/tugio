@@ -21,7 +21,7 @@ export default function DesktopItem({ label, icon: Icon, href, onClick, active, 
             <Link
                 href={href}
                 className={`group flex gap-x-3 rounded-md p-3 text-sm leading-6 font-semibold hover:bg-gray-100 
-                ${active && "bg-gray-100 text-gray-800"} 
+                ${active ? "bg-gray-100 text-gray-800" : ""} 
                 ${color || "text-gray-500 hover:text-gray-800"}
                 `}
             >

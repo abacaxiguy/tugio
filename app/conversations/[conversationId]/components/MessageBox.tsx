@@ -19,12 +19,12 @@ export default function MessageBox({ isLast, data }: MessageBoxProps) {
         .map((user) => user.name)
         .join(", ");
 
-    const container = `flex gap-3 p-4 ${isOwn && "justify-end"}`;
-    const avatar = `${isOwn && "order-2"}`;
-    const body = `flex flex-col gap-2 ${isOwn && "items-end"}`;
+    const container = `flex gap-3 p-4 ${isOwn ? "justify-end" : ""}`;
+    const avatar = `${isOwn ? "order-2" : ""}`;
+    const body = `flex flex-col gap-2 ${isOwn ? "items-end" : ""}`;
     const message = `text-sm w-fit overflow-hidden ${isOwn ? "bg-primary-500 text-white" : "bg-gray-100"} ${data.image ? "rounded-md p-0" : "rounded-full py-2 px-3"}`;
-    const time = `text-xs ${isOwn && "-order-1"}`;
-    const separator = `text-sm font-medium ${!isOwn && "-order-1"}`;
+    const time = `text-xs ${isOwn ? "-order-1" : ""}`;
+    const separator = `text-sm font-medium ${!isOwn ? "-order-1" : ""}`;
 
     return (
         <div className={container}>
