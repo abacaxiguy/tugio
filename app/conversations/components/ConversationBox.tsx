@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { FullConversationType } from "@/app/types";
 import useOtherUser from "@/app/hooks/useOtherUser";
 import Avatar from "@/app/components/Avatar";
+import getDynamicTime from "@/app/actions/getDynamicTime";
 
 interface ConversationBoxProps {
     data: FullConversationType;
@@ -52,10 +53,7 @@ export default function ConversationBox({ data, selected }: ConversationBoxProps
 
     const lastMessageDate = useMemo(() => {
         if (!lastMessage?.createdAt) return null;
-        const locale = Intl.DateTimeFormat().resolvedOptions().locale;
-        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const date = new Date(lastMessage.createdAt).toLocaleString(locale, { timeZone: tz });
-        return format(new Date(date), "HH:mm");
+        return getDynamicTime(lastMessage.createdAt);
     }, [lastMessage?.createdAt]);
 
     return (
