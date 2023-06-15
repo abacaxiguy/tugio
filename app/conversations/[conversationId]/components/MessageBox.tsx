@@ -35,7 +35,9 @@ export default function MessageBox({ isLast, data }: MessageBoxProps) {
                 <div className="flex items-center gap-1 relative text-gray-700">
                     <div className="font-medium">·</div>
                     <div className={separator}>{data.sender?.name}</div>
-                    <div className={time}>{getDynamicTime(data.createdAt)}</div>
+                    <div className={time} title={getDynamicTime(data.createdAt, "dd/MM/yyyy HH:mm")}>
+                        {getDynamicTime(data.createdAt)}
+                    </div>
                 </div>
                 <div className={message}>
                     {data.image ? (
