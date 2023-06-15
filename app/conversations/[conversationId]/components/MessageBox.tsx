@@ -23,7 +23,7 @@ export default function MessageBox({ isLast, data }: MessageBoxProps) {
     const avatar = `${isOwn && "order-2"}`;
     const body = `flex flex-col gap-2 ${isOwn && "items-end"}`;
     const message = `text-sm w-fit overflow-hidden ${isOwn ? "bg-primary-500 text-white" : "bg-gray-100"} ${data.image ? "rounded-md p-0" : "rounded-full py-2 px-3"}`;
-    const time = `text-xs absolute ${isOwn && "-left-8"} ${!isOwn && (!data.image ? "-right-8" : "left-20")}`;
+    const time = `text-xs ${isOwn && "-order-1"}`;
     const separator = `text-sm font-medium ${!isOwn && "-order-1"}`;
 
     return (
