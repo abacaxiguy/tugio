@@ -47,10 +47,10 @@ export default function ProfileDrawer({ data, isOpen, onClose }: ProfileDrawerPr
                         <div className="pointer-events-none fixed inset-y-0 right-0 flex md:max-w-full pl-10">
                             <Transition.Child
                                 as={Fragment}
-                                enter="transform transition ease-in-out duration-500"
+                                enter="transform transition ease-in-out duration-500 sm:duration-700"
                                 enterFrom="translate-x-full"
                                 enterTo="translate-x-0"
-                                leave="transform transition ease-in-out duration-500"
+                                leave="transform transition ease-in-out duration-500 sm:duration-700"
                                 leaveFrom="translate-x-0"
                                 leaveTo="translate-x-full"
                             >
