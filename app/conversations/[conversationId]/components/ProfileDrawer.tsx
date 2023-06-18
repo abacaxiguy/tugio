@@ -2,10 +2,11 @@
 
 import getDynamicTime from "@/app/actions/getDynamicTime";
 import Avatar from "@/app/components/Avatar";
+import ConfirmModal from "@/app/components/ConfirmModal";
 import useOtherUser from "@/app/hooks/useOtherUser";
 import { Dialog, Transition } from "@headlessui/react";
 import { Conversation, User } from "@prisma/client";
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { IoClose, IoTrash } from "react-icons/io5";
 
 interface ProfileDrawerProps {
@@ -18,6 +19,7 @@ interface ProfileDrawerProps {
 
 export default function ProfileDrawer({ data, isOpen, onClose }: ProfileDrawerProps) {
     const otherUser = useOtherUser(data);
+    const [confirmOpen, setConfirmOpen] = useState(false);
 
     const joinedDate = useMemo(() => {
         return getDynamicTime(data.createdAt, "PP");
@@ -41,6 +43,8 @@ export default function ProfileDrawer({ data, isOpen, onClose }: ProfileDrawerPr
                 <Transition.Child as={Fragment} enter="ease-out duration-500" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-500" leaveFrom="opacity-100" leaveTo="opacity-0">
                     <div className="fixed inset-0 bg-black bg-opacity-40" />
                 </Transition.Child>
+
+                <ConfirmModal isOpen={confirmOpen} onClose={() => setConfirmOpen(false)} />
 
                 <div className="fixed inset-0 overflow-hidden">
                     <div className="absolute inset-0 overflow-hidden">
@@ -81,7 +85,7 @@ export default function ProfileDrawer({ data, isOpen, onClose }: ProfileDrawerPr
                                                     <div
                                                         className="flex flex-col gap-3 items-center cursor-pointer hover:opacity-75
                                                     transition-opacity"
-                                                        onClick={() => {}}
+                                                        onClick={() => setConfirmOpen(true)}
                                                     >
                                                         <div className="w-10 h-10 bg-neutral-100 rounded-full flex items-center justify-center">
                                                             <IoTrash size={20} />
