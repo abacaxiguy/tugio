@@ -51,12 +51,9 @@ export default function ConfirmModal({ isOpen, onClose }: ConfirmModalProps) {
                     </div>
                 </div>
             </div>
-            <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-                <Button disabled={isLoading} danger onClick={onDelete}>
+            <div className="mt-6">
+                <Button fullWidth disabled={isLoading} danger onClick={onDelete}>
                     Delete
-                </Button>
-                <Button disabled={isLoading} secondary onClick={onClose}>
-                    Cancel
                 </Button>
             </div>
         </Modal>
