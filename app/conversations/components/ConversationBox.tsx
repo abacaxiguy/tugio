@@ -7,6 +7,7 @@ import { FullConversationType } from "@/app/types";
 import useOtherUser from "@/app/hooks/useOtherUser";
 import Avatar from "@/app/components/Avatar";
 import getDynamicTime from "@/app/actions/getDynamicTime";
+import AvatarGroup from "@/app/components/AvatarGroup";
 
 interface ConversationBoxProps {
     data: FullConversationType;
@@ -60,12 +61,12 @@ export default function ConversationBox({ data, selected }: ConversationBoxProps
             className={`w-full relative flex items-center space-x-3 hover:bg-neutral-100 rounded-lg transition cursor-pointer mt-1 p-3 ${selected ? "bg-neutral-100" : "bg-white"}`}
             onClick={handleClick}
         >
-            <Avatar user={otherUser} />
+            {data.isGroup ? <AvatarGroup users={data.users} /> : <Avatar user={otherUser} />}
             <div className="min-w-0 flex-1">
                 <div className="focus:outline-none">
                     <div className="flex justify-between items-center mb-1">
                         <p className={`text-md text-gray-900 ${!hasSeen ? "font-medium" : ""}`}>{data.name || otherUser?.name}</p>
-                        {lastMessage?.createdAt && <p className={`text-xs font-light ${hasSeen ? "text-gray-400" : "text-gray-900"}`}>{lastMessageDate}</p>}
+                        {lastMessage?.createdAt && <p className={`text-xs font-light ${hasSeen ? "text-gray-400" : "text-gray-900 font-semibold"}`}>{lastMessageDate}</p>}
                     </div>
                     <p className={`truncate text-sm ${hasSeen ? "text-gray-400" : "text-gray-900 font-medium"}`}>{lastMessageText}</p>
                 </div>
