@@ -9,6 +9,12 @@ module.exports = {
                     600: "#0070CC",
                 },
             },
+            keyframes: {
+                preloader: {
+                    "0%": { height: "100%" },
+                    "100%": { height: "0" },
+                },
+            },
         },
     },
     plugins: [

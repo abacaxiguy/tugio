@@ -7,3 +7,7 @@ body,
 :root {
     height: 100%;
 }
+
+.rotate-Y-180 {
+    transform: rotateY(180deg) rotate(180deg);
+}
