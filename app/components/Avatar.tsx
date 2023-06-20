@@ -5,15 +5,13 @@ import Image from "next/image";
 
 interface AvatarProps {
     user?: User;
-    className?: string;
+    size?: "s" | "l";
 }
 
-export default function Avatar({ user, className }: AvatarProps) {
-    if (!className) className = "h-9 w-9 md:h-11 md:w-11";
-
+export default function Avatar({ user, size = "s" }: AvatarProps) {
     return (
         <div className="relative">
-            <div className={`relative inline-block rounded-full overflow-hidden ${className}`}>
+            <div className={`relative inline-block rounded-full overflow-hidden ${size === "s" ? "h-9 w-9 md:h-11 md:w-11" : "h-32 w-32 md:h-36 md:w-36"}`}>
                 <Image alt={`${user?.name}'s avatar`} src={user?.image || "/images/placeholder.svg"} fill />
             </div>
             <span className="absolute block rounded-full bg-green-500 ring-2 ring-white top-0 right-0 h-2 w-2 md:h-3 md:w-3" />
