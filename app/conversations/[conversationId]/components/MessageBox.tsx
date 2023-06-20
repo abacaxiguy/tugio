@@ -1,10 +1,14 @@
 "use client";
 
+import Image from "next/image";
+import { useState } from "react";
+import { useSession } from "next-auth/react";
+
 import getDynamicTime from "@/app/actions/getDynamicTime";
 import Avatar from "@/app/components/Avatar";
+
 import { FullMessageType } from "@/app/types";
-import { useSession } from "next-auth/react";
-import Image from "next/image";
+import ImageModal from "./ImageModal";
 
 interface MessageBoxProps {
     isLast?: boolean;
@@ -13,6 +17,8 @@ interface MessageBoxProps {
 
 export default function MessageBox({ isLast, data }: MessageBoxProps) {
     const session = useSession();
+    const [imageModalOpen, setImageModalOpen] = useState(false);
+
     const isOwn = session?.data?.user?.email === data.sender?.email;
     const seenList = (data.seen || [])
         .filter((user) => user.email !== session?.data?.user?.email)
@@ -40,8 +46,16 @@ export default function MessageBox({ isLast, data }: MessageBoxProps) {
                     </div>
                 </div>
                 <div className={message}>
+                    <ImageModal src={data.image} isOpen={imageModalOpen} onClose={() => setImageModalOpen(false)} />
                     {data.image ? (
-                        <Image alt={`image sent by ${data.sender?.name}`} src={data.image} width={288} height={288} className="object-cover cursor-pointer hover:scale-110 transition translate" />
+                        <Image
+                            alt={`image sent by ${data.sender?.name}`}
+                            src={data.image}
+                            width={288}
+                            height={288}
+                            className="object-cover cursor-pointer hover:scale-110 transition translate"
+                            onClick={() => setImageModalOpen(true)}
+                        />
                     ) : (
                         <div>{data.body}</div>
                     )}
