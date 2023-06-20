@@ -2,6 +2,7 @@
 
 import getDynamicTime from "@/app/actions/getDynamicTime";
 import Avatar from "@/app/components/Avatar";
+import AvatarGroup from "@/app/components/AvatarGroup";
 import ConfirmModal from "@/app/components/ConfirmModal";
 import useOtherUser from "@/app/hooks/useOtherUser";
 import { Dialog, Transition } from "@headlessui/react";
@@ -76,9 +77,7 @@ export default function ProfileDrawer({ data, isOpen, onClose }: ProfileDrawerPr
                                         </div>
                                         <div className="relative mt-6 flex-1 px-4 sm:px-6">
                                             <div className="flex flex-col items-center">
-                                                <div className="mb-2">
-                                                    <Avatar className="w-32 h-32 md:w-36 md:h-36" user={otherUser} />
-                                                </div>
+                                                <div className="mb-2">{data.isGroup ? <AvatarGroup users={data.users} size="l" /> : <Avatar size="l" user={otherUser} />}</div>
                                                 <div>{title}</div>
                                                 <div className="text-sm text-gray-500">{statusText}</div>
                                                 <div className="flex gap-10 my-8">
@@ -95,23 +94,35 @@ export default function ProfileDrawer({ data, isOpen, onClose }: ProfileDrawerPr
                                                 </div>
                                                 <div className="w-full pb-5 pt-5 sm:px-0 sm:pt-0">
                                                     <dl className="space-y-8 px-4 sm:space-y-6 sm:px-6">
+                                                        {data.isGroup && (
+                                                            <div>
+                                                                <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">Users</dt>
+                                                                <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
+                                                                    {data.users.map((user) => (
+                                                                        <div key={user.id} className="flex items-start gap-3 mt-4">
+                                                                            <Avatar user={user} />
+                                                                            <div className="flex flex-col justify-start">
+                                                                                <span className="font-semibold">{user.name}</span>
+                                                                                <span>{user.email}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    ))}
+                                                                </dd>
+                                                            </div>
+                                                        )}
                                                         {!data.isGroup && (
                                                             <div>
                                                                 <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">Email</dt>
                                                                 <dd className="mt-1 text-sm  text-gray-900 sm:col-span-2">{otherUser?.email}</dd>
                                                             </div>
                                                         )}
-                                                        {!data.isGroup && [
-                                                            <>
-                                                                <hr />
-                                                                <div>
-                                                                    <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">Joined</dt>
-                                                                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-                                                                        <time dateTime={joinedDate}>{joinedDate}</time>
-                                                                    </dd>
-                                                                </div>
-                                                            </>,
-                                                        ]}
+                                                        <hr />
+                                                        <div>
+                                                            <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">{data.isGroup ? "Created on" : "Joined"}</dt>
+                                                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
+                                                                <time dateTime={joinedDate}>{joinedDate}</time>
+                                                            </dd>
+                                                        </div>
                                                     </dl>
                                                 </div>
                                             </div>
