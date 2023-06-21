@@ -4,6 +4,7 @@ import getDynamicTime from "@/app/actions/getDynamicTime";
 import Avatar from "@/app/components/Avatar";
 import AvatarGroup from "@/app/components/AvatarGroup";
 import ConfirmModal from "@/app/components/ConfirmModal";
+import useActiveList from "@/app/hooks/useActiveList";
 import useOtherUser from "@/app/hooks/useOtherUser";
 import { Dialog, Transition } from "@headlessui/react";
 import { Conversation, User } from "@prisma/client";
@@ -22,6 +23,9 @@ export default function ProfileDrawer({ data, isOpen, onClose }: ProfileDrawerPr
     const otherUser = useOtherUser(data);
     const [confirmOpen, setConfirmOpen] = useState(false);
 
+    const { members } = useActiveList();
+    const isActive = members.indexOf(otherUser?.email!) !== -1;
+
     const joinedDate = useMemo(() => {
         return getDynamicTime(data.createdAt, "PP");
     }, [data.createdAt]);
@@ -35,8 +39,8 @@ export default function ProfileDrawer({ data, isOpen, onClose }: ProfileDrawerPr
             return `${data.users.length} members`;
         }
 
-        return "Online";
-    }, [data]);
+        return isActive ? "Online" : "Offline";
+    }, [data, isActive]);
 
     return (
         <Transition.Root show={isOpen} as={Fragment}>
