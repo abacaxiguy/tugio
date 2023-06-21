@@ -4,6 +4,8 @@ export default function getDynamicTime(time: Date, formatType?: string) {
     const locale = Intl.DateTimeFormat().resolvedOptions().locale;
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
+    if (typeof time === "string") time = new Date(time);
+
     if (!formatType) {
         const now = new Date();
         const diff = now.getTime() - time.getTime();
