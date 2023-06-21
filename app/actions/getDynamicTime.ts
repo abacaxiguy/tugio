@@ -1,9 +1,6 @@
 import { format } from "date-fns";
 
 export default function getDynamicTime(time: Date, formatType?: string) {
-    const locale = Intl.DateTimeFormat().resolvedOptions().locale;
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
     if (typeof time === "string") time = new Date(time);
 
     if (!formatType) {
@@ -15,6 +12,5 @@ export default function getDynamicTime(time: Date, formatType?: string) {
         else formatType = "dd/MM/yyyy";
     }
 
-    const date = new Date(time).toLocaleString(locale, { timeZone: tz });
-    return format(new Date(date), formatType);
+    return format(time, formatType);
 }
