@@ -88,7 +88,7 @@ export default function AuthForm() {
     return (
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <h2 className="mb-6 text-center text-3xl font-bold tracking-tight text-gray-700">{variant === "LOGIN" ? "Sign in to your account" : "Create your Tugio account"}</h2>
-            <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
+            <div className="bg-white px-4 py-8 sm:shadow sm:rounded-lg sm:px-10">
                 <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                     {variant === "REGISTER" && <Input id="name" label="Name" register={register} errors={errors} disabled={isLoading} />}
                     <Input id="email" type="email" label="Email address" register={register} errors={errors} disabled={isLoading} />
