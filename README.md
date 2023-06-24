@@ -4,6 +4,8 @@
     <img alt="Tugio's logo" src="https://github.com/abacaxiguy/tugio/blob/main/public/images/logo2.svg" height="75" />
   </p>
 
+<br>
+
 # 📲 Tugio, Your instant messaging app with Next.js and Prisma ⚛
 
 </div>
@@ -17,12 +19,18 @@
 <br>
 
 <p align="center">
-  <img src="./img/screenshot_1.png" width="91%"/>
-  <!-- <img src="./img/screenshot_2.png" width="91%"/>
-  <img src="./img/screenshot_3.png" width="91%"/>
-  <img src="./img/screenshot_4.png" width="91%"/>
-  <img src="./img/screenshot_5.png" width="91%"/> -->
+  <img src="./img/showcase.gif"/>
+  <img src="./img/screenshot_1.png" width="49.7%"/>
+  <img src="./img/screenshot_2.png" width="49.7%"/>
+  <img src="./img/screenshot_3.png" width="49.7%"/>
+  <img src="./img/screenshot_4.png" width="49.7%"/>
+  <img src="./img/screenshot_5.png" width="49.7%"/>
+  <img src="./img/screenshot_6.png" width="49.7%"/>
+  <img src="./img/screenshot_7.png" width="49.7%"/>
+  <img src="./img/screenshot_8.png" width="49.7%"/>
 </p>
+
+---
 
 ## 🧪 Technologies
 
@@ -31,6 +39,7 @@ This project was developed using the following technologies and libraries:
 <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" height="30px"></a>
 <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" height="30px"></a>
 <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white" height="30px"></a>
+<a href="https://www.mongodb.com/"><img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" height="30px"></a>
 <a href="https://www.prisma.io/"><img src="https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white" height="30px"></a>
 <a href="https://pusher.com/"><img src="https://img.shields.io/badge/Pusher-FF69B4?style=for-the-badge&logo=pusher&logoColor=white" height="30px"></a>
 
